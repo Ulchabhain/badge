@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CoursServiceImpl implements CoursService{
+public class  CoursServiceImpl implements CoursService{
     @Autowired
     CoursRepository coursRepository;
     @Autowired
