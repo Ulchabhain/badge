@@ -11,13 +11,12 @@ import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service("composanteService")
 public class ComposanteServiceImpl implements ComposanteService {
 
     private final ComposanteRepository composanteRepository;
 
-    public ComposanteServiceImpl(ComposanteRepository composanteRepository){
-        this.composanteRepository = composanteRepository;
-    }
+    public ComposanteServiceImpl(ComposanteRepository composanteRepository){ this.composanteRepository = composanteRepository; }
 
     @Override
     public ComposanteDto saveComposante(ComposanteDto composanteDto) {
@@ -69,7 +68,6 @@ public class ComposanteServiceImpl implements ComposanteService {
         Composante composante = new Composante();
         composante.setId(composante.getId());
         composante.setNomComposante(composante.getNomComposante());
-
 
         return composante;
     }
