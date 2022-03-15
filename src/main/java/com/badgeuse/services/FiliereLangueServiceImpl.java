@@ -6,6 +6,7 @@ import com.badgeuse.repositories.FiliereLangueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,17 +30,24 @@ public class FiliereLangueServiceImpl implements FiliereLangueService{
 
     @Override
     public FiliereLangueDto getFiliereLangueById(Long filiereLangueId) {
-        return null;
+        FiliereLangue filiereLangue = filiereLangueRepository.findById(filiereLangueId).orElseThrow(()-> new EntityNotFoundException("filiereLangue not found"));
+        return filiereLangueEntityToDto(filiereLangue);
     }
 
     @Override
     public boolean deleteFiliereLangue(Long filiereLangueId) {
-        return false;
+        filiereLangueRepository.deleteById(filiereLangueId);
+        return true;
     }
 
     @Override
     public List<FiliereLangueDto> getAllFiliereLangue() {
-        return null;
+        List<FiliereLangueDto> filiereLangueDtos = new ArrayList<>();
+        List<FiliereLangue> filiereLangues = filiereLangueRepository.findAll();
+        filiereLangues.forEach(filiere -> {
+            filiereLangueDtos.add(filiereLangueEntityToDto(filiere));
+        });
+        return filiereLangueDtos;
     }
 
 
